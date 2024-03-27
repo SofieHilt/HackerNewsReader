@@ -3,22 +3,10 @@ import NewsItem from "./NewsItem.jsx";
 
 const Main = () => {
   return (
-  <>
-    <h1>Hello from Main</h1>
-    <NewsItem />
-  </>)
+    <>
+      <NewsItem />
+    </>
+  );
 };
 
 export default Main;
-
-
-
-
-
-
-
-
-
-
-
-

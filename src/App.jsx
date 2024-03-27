@@ -1,10 +1,19 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import Search from './search';
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [count, setCount] = useState(0);
+  const [articles, setArticles] = useState([]);
+
+  const fetchArticles = (query) => {
+    fetch(`https://hn.algolia.com/api/v1/search?query=${query}`) 
+    .then((response) => response.json())
+    .then((data) => setArticles(data.hits))
+    .catch((error) => console.error('error fetching articles:', error));
+  };
 
   return (
     <>
@@ -18,18 +27,20 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button onClick={() => setCount(count + 1)}>
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Search onSearch={fetchArticles} />
+      <ul>
+        {articles.map((article) => (
+          <li key={article.objectID}>
+            <a href={article.url}>{article.title}</a>
+          </li>
+        ))}
+      </ul>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

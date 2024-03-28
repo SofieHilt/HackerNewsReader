@@ -4,6 +4,9 @@
 
 @layer component {
     .btn-sec {
-        @apply text-orange-200 hover:text-black hover:font-bold transition-all;
+        @apply text-orange-200 hover:text-black hover:font-bold transition-all ease-in-out;
+    }
+    .btn-nav {
+        @apply hover:text-white cursor-pointer hover:font-bold transition-all duration-300 ease-in-out;
     }
 }

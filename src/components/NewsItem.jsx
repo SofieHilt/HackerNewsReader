@@ -36,7 +36,7 @@ function NewsItem(props) {
               id="headline"
               className="w-full text-3xl font-bold text-orange-50"
             >
-              <h1 className="btn-sec">
+              <h1 className="">
                 <a href={`${props.url}`}>{`${props.title}`}</a>
               </h1>
             </div>
